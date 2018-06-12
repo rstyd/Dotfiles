@@ -1,5 +1,13 @@
+" Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/junegunn/fzf.vim'
+Plug 'https://github.com/w0rp/ale'
+call plug#end()
+
 " Colors
 syntax enable  	    " Enables syntax highlighting
+
+set t_Co=256
 
 " Alignment
 set tabstop=4       " Number of visual spaces per tab
@@ -30,8 +38,12 @@ set incsearch       " Search as characters are entered
 
 set hlsearch        " Highlight matches
 
-" Plugins
-call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/junegunn/fzf.vim'
 
-call plug#end()
+" Enables persistent undo which is amazing
+if has('persistent_undo')      "check if your vim version supports it
+  set undofile                 "turn on the feature  
+  set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+  set undolevels=1000 " Maximum number of changes that cna be undone
+  set undoreload=10000 " maximum number of lines to save when relaoding a buffer
+  endif      
+
