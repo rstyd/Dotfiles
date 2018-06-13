@@ -2,8 +2,8 @@
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/junegunn/fzf.vim'
 Plug 'https://github.com/w0rp/ale'
-Plug 'gilgigilgil/anderson.vim'
 Plug 'https://github.com/jnurmine/Zenburn.git'
+Plug 'https://github.com/itchyny/lightline.vim'
 call plug#end()
 
 " Colors
@@ -28,6 +28,15 @@ augroup numbertoggle
     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
+
+set laststatus=2
+" Configure status line
+let g:lightline = {
+  \     'active': {
+  \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
+  \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
+  \     }
+  \ }
 
 filetype indent on  " Load filetype-specific indent files
 
