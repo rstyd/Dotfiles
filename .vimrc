@@ -2,12 +2,14 @@
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/junegunn/fzf.vim'
 Plug 'https://github.com/w0rp/ale'
+Plug 'gilgigilgil/anderson.vim'
+Plug 'https://github.com/jnurmine/Zenburn.git'
 call plug#end()
 
 " Colors
 syntax enable  	    " Enables syntax highlighting
-
 set t_Co=256
+colors zenburn
 
 " Alignment
 set tabstop=4       " Number of visual spaces per tab
