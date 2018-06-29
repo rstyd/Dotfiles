@@ -1,0 +1,68 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+# Dotfile synchronization git repo 
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Connect to wash
+alias wash='ssh -tt cdavis@portal.newmexicoconsortium.org ssh -tt clauded@directo'
+
+SAVEHIST=10000
+alias portal='ssh cdavis@portal.newmexicoconsortium.org'
+alias charlie='ssh -p 2022 charlie@localhost -Y'
+alias django='ssh -p 2023 rusty@localhost -Y'
+#alias startvm='VBoxHeadless --startvm Charliecloud &'
+#alias stopvm='VBoxManage controlvm Charliecloud acpipowerbutton'
+alias fog='ssh rustyd@fg-fey1'
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+alias ls='ls --color'
+
+function startvm()
+{
+    if [ -z $1 ] 
+    then 
+        echo "Usage: startvm <VM Name>. (VMs: charlie django>)"
+        return
+    fi
+
+    if [ $1 = 'django' ] 
+    then 
+        VBoxHeadless --startvm decaf-fsefi &
+    elif [ $1 = 'charlie' ]
+    then 
+        VBoxHeadless --startvm Charliecloud &
+    else 
+        echo "Valid options: Charliecloud decaf-fsefi"
+    fi
+}
+
+function stopvm()
+{
+    if [ -z $1 ] 
+    then 
+        echo "Usage: stopvm <VM Name>. (VMs: charlie django>)"
+        return
+    fi
+
+    if [ $1 = 'django' ] 
+    then 
+        VBoxManage controlvm decaf-fsefi acpipowerbutton
+    elif [ $1 = 'charlie' ]
+    then 
+        VBoxManage controlvm Charliecloud acpipowerbutton
+    else 
+        echo "Valid options: Charliecloud decaf-fsefi"
+    fi
+}
+
