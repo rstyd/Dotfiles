@@ -18,6 +18,9 @@ set softtabstop=4   " Number of spaces in tab when editing
 
 set expandtab 	    " Make tabs spaces
 
+" Enable backspace 
+set bs=2
+
 " UI
 set mouse=a
 set number relativenumber 	        " Show line numbers
